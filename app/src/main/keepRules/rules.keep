@@ -1,0 +1,18 @@
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# Shizuku 的 Binder 代理和 provider 依赖类名，保留以免 release 构建被裁掉。
+-keep class rikka.shizuku.** { *; }
+-keep class moe.shizuku.** { *; }
+-keep class me.jegxiao.honortoolbox.tiles.** { *; }
+-keep class me.jegxiao.honortoolbox.widget.** { *; }
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}

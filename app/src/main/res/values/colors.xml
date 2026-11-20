@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 品牌色（浅色） -->
+    <color name="primary">#FF3F5BF6</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="primary_container">#FFDDE1FF</color>
+    <color name="on_primary_container">#FF001356</color>
+    <color name="secondary">#FF006A6A</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="secondary_container">#FF9CF1F0</color>
+    <color name="on_secondary_container">#FF002020</color>
+    <color name="tertiary">#FF8C5000</color>
+    <color name="on_tertiary">#FFFFFFFF</color>
+    <color name="tertiary_container">#FFFFDDB6</color>
+    <color name="on_tertiary_container">#FF2C1600</color>
+    <color name="surface">#FFFAF9FD</color>
+    <color name="on_surface">#FF1B1B1F</color>
+    <color name="surface_variant">#FFE3E1EC</color>
+    <color name="on_surface_variant">#FF46464F</color>
+    <color name="outline">#FF777680</color>
+    <color name="outline_variant">#FFC7C5D0</color>
+    <color name="error">#FFBA1A1A</color>
+    <color name="on_error">#FFFFFFFF</color>
+    <color name="error_container">#FFFFDAD6</color>
+    <color name="on_error_container">#FF410002</color>
+    <color name="inverse_surface">#FF303034</color>
+    <color name="inverse_on_surface">#FFF2F0F4</color>
+    <color name="surface_container_lowest">#FFFFFFFF</color>
+    <color name="surface_container_low">#FFF5F3F7</color>
+    <color name="surface_container">#FFEFEDF1</color>
+    <color name="surface_container_high">#FFE9E7EC</color>
+    <color name="surface_container_highest">#FFE4E2E6</color>
+    <color name="surface_bright">#FFFAF9FD</color>
+    <color name="surface_dim">#FFDBD9DD</color>
+
+    <color name="card_background">#FFFFFFFF</color>
+    <color name="card_stroke">#FFE4E2E6</color>
+    <color name="code_background">#FFF1F0F4</color>
+
+    <!-- 功能图标底色 -->
+    <color name="nav_badge_bg">#FFE4E7FF</color>
+    <color name="nav_badge_fg">#FF3F5BF6</color>
+    <color name="timeout_badge_bg">#FFFFF0D6</color>
+    <color name="timeout_badge_fg">#FF9A5B00</color>
+    <color name="wireless_badge_bg">#FFD6F4F2</color>
+    <color name="wireless_badge_fg">#FF00696B</color>
+    <color name="perf_badge_bg">#FFFFE3DC</color>
+    <color name="perf_badge_fg">#FFB3261E</color>
+    <color name="setup_badge_bg">#FFEDE9F7</color>
+    <color name="setup_badge_fg">#FF5A4A9E</color>
+
+    <!-- 小组件固定深色底，文字使用固定颜色 -->
+    <color name="widget_active">#FFFFFFFF</color>
+    <color name="widget_inactive">#80FFFFFF</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

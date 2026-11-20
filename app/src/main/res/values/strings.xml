@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">荣耀工具箱</string>
+    <string name="app_subtitle">导航 · 熄屏 · 无线调试 · 性能，一处搞定</string>
+
+    <!-- 通用 -->
+    <string name="version_label">版本 %1$s</string>
+    <string name="toast_version_copied">版本信息已复制</string>
+    <string name="action_setup">去授权</string>
+    <string name="action_ok">知道了</string>
+    <string name="back">返回</string>
+    <string name="chevron_desc">进入</string>
+
+    <!-- 导航方式 -->
+    <string name="nav_title">导航方式</string>
+    <string name="nav_card_desc">三键导航与手势导航，一键切换</string>
+    <string name="mode_three">三键导航</string>
+    <string name="mode_two">二键导航</string>
+    <string name="mode_gesture">手势导航</string>
+    <string name="mode_three_short">三键</string>
+    <string name="mode_two_short">二键</string>
+    <string name="mode_gesture_short">手势</string>
+    <string name="mode_three_desc">屏幕底部显示返回、主页、多任务三个按键</string>
+    <string name="mode_two_desc">返回键与上滑手势混合的导航方式</string>
+    <string name="mode_gesture_desc">从屏幕底部上滑回到桌面，从边缘侧滑返回</string>
+    <string name="nav_switch_to_gesture">切换为手势导航</string>
+    <string name="nav_switch_to_three">切换为三键导航</string>
+    <string name="nav_go_setup">前往授权</string>
+    <string name="nav_unsupported">系统不支持</string>
+    <string name="nav_unsupported_desc">手势导航需要 Android 10（API 29）及以上版本。</string>
+    <string name="toast_nav_switched_gesture">已切换为手势导航</string>
+    <string name="toast_nav_switched_three">已切换为三键导航</string>
+    <string name="toast_nav_failed">切换失败：%1$s</string>
+    <string name="toast_nav_need_permission">请先在「授权与帮助」中完成 ADB 授权</string>
+    <string name="toast_nav_need_shizuku">请先在「授权与帮助」中完成 Shizuku 授权</string>
+    <string name="toast_nav_unsupported">当前系统不支持手势导航（需 Android 10 及以上）</string>
+    <string name="error_write_rejected">系统拒绝写入</string>
+    <string name="error_not_applied">系统未采用新的导航方式</string>
+    <string name="error_unknown">未知错误</string>
+
+    <!-- 熄屏时间 -->
+    <string name="timeout_title">熄屏时间</string>
+    <string name="timeout_subtitle">选择系统自动熄屏的时间</string>
+    <string name="timeout_card_desc">点按修改自动熄屏时长</string>
+    <string name="timeout_current_title">当前熄屏时间</string>
+    <string name="timeout_choose">选择熄屏时间</string>
+    <string name="timeout_seconds">%1$d 秒</string>
+    <string name="timeout_minutes">%1$d 分钟</string>
+    <string name="timeout_minutes_seconds">%1$d 分 %2$d 秒</string>
+    <string name="timeout_never">永不熄屏</string>
+    <string name="timeout_never_short">永不</string>
+    <string name="timeout_seconds_short">%1$d 秒</string>
+    <string name="timeout_minutes_short">%1$d 分</string>
+    <string name="timeout_unknown">未知</string>
+    <string name="timeout_unknown_short">未知</string>
+    <string name="timeout_permission_granted">已授予「修改系统设置」权限</string>
+    <string name="timeout_permission_missing">尚未授予「修改系统设置」权限，授权后才能修改熄屏时间。</string>
+    <string name="timeout_grant_permission">授予「修改系统设置」权限</string>
+    <string name="timeout_set_success">熄屏时间已设为 %1$s</string>
+    <string name="toast_timeout_never">已切换为永不熄屏</string>
+    <string name="toast_timeout_short">已切换为 2 分钟</string>
+    <string name="toast_timeout_failed">设置失败，系统未接受该时长（可能被设备策略限制）</string>
+    <string name="toast_timeout_permission">请先授予「修改系统设置」权限</string>
+    <string name="timeout_options_hint">授权后即可直接选择；现在点按档位会跳转到授权页面。</string>
+    <string name="timeout_usage_title">使用方式</string>
+    <string name="timeout_usage">1. 下拉控制中心，点按「熄屏时间」磁贴：未激活为 2 分钟，激活为永不熄屏。\n2. 其他时长可在此页面直接选择。\n3. 永不熄屏会比较耗电，用完记得切回较短时长。</string>
+    <string name="timeout_add_tile">添加控制中心开关</string>
+    <string name="timeout_add_tile_requested">请按系统提示完成添加</string>
+    <string name="timeout_add_tile_instructions">请下拉控制中心，点按编辑（铅笔）按钮，在可用开关中找到「熄屏时间」，然后把它拖到快捷面板。</string>
+    <string name="write_settings_unavailable">未找到「修改系统设置」页面，请到系统设置中手动为本应用开启该权限。</string>
+    <string name="timeout_long_press_hint">长按控制中心里的「熄屏时间」磁贴也可以回到本应用。</string>
+
+    <!-- 无线调试 -->
+    <string name="wireless_title">无线调试</string>
+    <string name="wireless_desc_on">无线调试已开启，ADB 可通过 Wi-Fi 连接（首次连接仍需配对）。</string>
+    <string name="wireless_desc_off">点按开关，无需进入开发者选项即可开启无线调试。</string>
+    <string name="wireless_desc_unsupported">当前系统低于 Android 11，没有「无线调试」功能。</string>
+    <string name="wireless_desc_busy">正在写入系统设置，请稍候…</string>
+    <string name="wireless_state_on">已开启</string>
+    <string name="wireless_state_off">已关闭</string>
+    <string name="wireless_state_enabling">正在开启…</string>
+    <string name="wireless_state_disabling">正在关闭…</string>
+    <string name="wireless_state_unsupported">需要 Android 11 及以上</string>
+    <string name="toast_wireless_enabled">无线调试已开启</string>
+    <string name="toast_wireless_disabled">无线调试已关闭</string>
+    <string name="toast_wireless_permission">需要先完成 Shizuku 或 ADB 授权</string>
+    <string name="toast_wireless_failed">操作失败，请检查 Shizuku 状态后重试</string>
+    <string name="toast_wireless_unsupported">无线调试需要 Android 11 及以上</string>
+    <string name="tile_wireless_label">无线调试</string>
+    <string name="tile_wireless_on">已开启，点按关闭</string>
+    <string name="tile_wireless_off">点按开启</string>
+    <string name="tile_wireless_unsupported">需要 Android 11+</string>
+    <string name="tile_wireless_need_permission">需授权</string>
+
+    <!-- 性能模式 -->
+    <string name="perf_title">性能模式</string>
+    <string name="perf_state_on">性能模式已开启</string>
+    <string name="perf_state_off">均衡模式</string>
+    <string name="perf_state_unsupported">当前设备不支持</string>
+    <string name="perf_desc_on">设备将释放全部性能，耗电和发热会相应增加。</string>
+    <string name="perf_desc_off">点按开关切换到性能模式，适合游戏和重负载场景。</string>
+    <string name="perf_desc_unsupported">未检测到系统项 SmartModeStatus（仅荣耀 MagicOS / 华为 EMUI 支持）。</string>
+    <string name="perf_desc_busy">正在切换性能模式，请稍候…</string>
+    <string name="toast_perf_failed">切换失败，请检查 Shizuku 或「修改系统设置」权限</string>
+    <string name="toast_perf_permission">请先完成 Shizuku 或「修改系统设置」授权</string>
+    <string name="toast_perf_unsupported">当前设备不支持性能模式切换</string>
+    <string name="tile_perf_label">性能模式</string>
+    <string name="tile_perf_on">性能模式已开启</string>
+    <string name="tile_perf_off">均衡模式</string>
+    <string name="tile_perf_need_permission">需授权</string>
+    <string name="tile_perf_unsupported">当前设备不支持</string>
+
+    <!-- 导航磁贴 -->
+    <string name="tile_nav_label">导航方式</string>
+    <string name="tile_nav_desc">点按切换三键导航和手势导航</string>
+    <string name="tile_nav_need_shizuku">需要 Shizuku</string>
+    <string name="tile_nav_need_permission">需要授权</string>
+    <string name="tile_nav_unsupported">系统不支持</string>
+
+    <!-- 熄屏磁贴 -->
+    <string name="tile_timeout_label">熄屏时间</string>
+    <string name="tile_timeout_desc">熄屏时间，%1$s，点按切换</string>
+    <string name="tile_timeout_never">永不熄屏</string>
+    <string name="tile_timeout_current">当前 %1$s</string>
+    <string name="tile_timeout_need_permission">需授权</string>
+    <string name="tile_timeout_unknown">点按设置</string>
+
+    <!-- 授权与帮助 -->
+    <string name="setup_entry_title">授权与帮助</string>
+    <string name="setup_entry_desc_ready">所有权限已就绪</string>
+    <string name="setup_entry_desc_pending">部分功能需要授权，点按查看</string>
+    <string name="setup_title">授权与帮助</string>
+    <string name="setup_subtitle">集中管理 Shizuku、ADB 与特殊权限</string>
+    <string name="shizuku_title">Shizuku（推荐）</string>
+    <string name="shizuku_desc">Shizuku 让本应用以 shell 身份修改系统设置，无需 adb 授权或 root。导航切换、无线调试和性能模式都可以通过它完成。</string>
+    <string name="shizuku_steps">1. 安装 Shizuku\n2. 按 Shizuku 内引导启动服务（Android 11+ 可用无线调试启动）\n3. 回到本页点击「授予权限」</string>
+    <string name="shizuku_status_not_installed">状态：未安装 Shizuku</string>
+    <string name="shizuku_status_not_running">状态：Shizuku 未运行</string>
+    <string name="shizuku_status_not_granted">状态：Shizuku 已运行，尚未授权</string>
+    <string name="shizuku_status_granted">状态：已授权，可直接一键切换</string>
+    <string name="shizuku_open">打开 Shizuku</string>
+    <string name="shizuku_grant">授予权限</string>
+    <string name="shizuku_granted">已授权</string>
+    <string name="shizuku_get">获取 Shizuku</string>
+    <string name="toast_shizuku_granted">Shizuku 授权成功</string>
+    <string name="toast_shizuku_not_running">Shizuku 未运行，请先启动 Shizuku</string>
+    <string name="toast_shizuku_not_installed">未安装 Shizuku，请先安装并启动</string>
+    <string name="adb_title">ADB 授权（备用）</string>
+    <string name="adb_desc">不使用 Shizuku 时，可以在电脑上通过 ADB 执行一次下面的命令，为应用授予安全设置和「修改系统设置」权限。只需一次，之后无需电脑。</string>
+    <string name="adb_status_granted">WRITE_SECURE_SETTINGS 已授权</string>
+    <string name="adb_status_missing">WRITE_SECURE_SETTINGS 未授权</string>
+    <string name="adb_command">adb shell pm grant %1$s android.permission.WRITE_SECURE_SETTINGS\nadb shell appops set %1$s android:write_settings allow</string>
+    <string name="copy_command">复制命令</string>
+    <string name="toast_copied">命令已复制</string>
+    <string name="recheck">重新检查</string>
+    <string name="toast_granted">授权成功，功能已可用</string>
+    <string name="toast_still_missing">仍未检测到授权，请确认命令执行成功</string>
+    <string name="root_grant">没有电脑？尝试 Root 一键授权</string>
+    <string name="toast_root_trying">正在尝试 Root 授权…</string>
+    <string name="toast_root_granted">Root 授权成功</string>
+    <string name="toast_root_failed">Root 不可用或授权被拒绝</string>
+    <string name="write_settings_title">修改系统设置</string>
+    <string name="write_settings_status_granted">已授予「修改系统设置」权限</string>
+    <string name="write_settings_status_missing">尚未授予「修改系统设置」权限</string>
+    <string name="write_settings_desc">熄屏时间与性能模式（无 Shizuku 时）需要此权限。点击下方按钮前往系统设置开启。</string>
+    <string name="write_settings_open">打开授权页面</string>
+    <string name="help_title">使用说明</string>
+    <string name="help_steps">• 下拉控制中心，点按编辑按钮，可把四个磁贴拖入常用区域。\n• 长按任意磁贴会回到本应用。\n• 桌面小组件为 2×2，四个格子分别对应四个功能。\n• Shizuku 重启后可能需要在 Shizuku 中重新授权本应用。</string>
+    <string name="open_battery_settings">打开电池设置</string>
+    <string name="security_note">说明：本应用只切换系统开关，不涉及网络传输。关闭无线调试会断开已建立的无线 ADB 连接，远程调试时请避免误触。切换导航方式后系统界面会短暂重载，属于正常现象。</string>
+    <string name="toast_no_dev_options">无法打开开发者选项，请手动前往系统设置</string>
+
+    <!-- 小组件 -->
+    <string name="widget_name">工具箱快捷开关</string>
+    <string name="widget_desc">四个功能，一格一键</string>
+    <string name="widget_nav_gesture_short">手势</string>
+    <string name="widget_nav_three_short">三键</string>
+    <string name="widget_unsupported_short">不支持</string>
+    <string name="widget_on_short">已开</string>
+    <string name="widget_off_short">已关</string>
+    <string name="widget_perf_on_short">性能</string>
+    <string name="widget_perf_off_short">均衡</string>
+
+    <!-- 图标描述 -->
+    <string name="nav_icon_desc">导航方式图标</string>
+    <string name="timeout_icon_desc">熄屏时间图标</string>
+    <string name="wireless_icon_desc">无线调试图标</string>
+    <string name="perf_icon_desc">性能模式图标</string>
+    <string name="setup_icon_desc">授权与帮助图标</string>
+</resources>

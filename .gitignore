@@ -1,0 +1,28 @@
+*.iml
+.gradle/
+.kotlin/
+.idea/
+.local.properties
+/local.properties
+local.properties
+/build
+build/
+/app/release/
+/captures
+.externalNativeBuild
+.cxx
+.DS_Store
+
+# 构建产物与签名材料绝不入库
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+keystore.properties
+
+# 工具本地目录
+.zcode/
+*.hprof

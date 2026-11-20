@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 四个圆角方块：四个功能合而为一 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M37,31h10a6,6 0 0 1 6,6v10a6,6 0 0 1 -6,6H37a6,6 0 0 1 -6,-6V37a6,6 0 0 1 6,-6z" />
+    <path
+        android:fillColor="#FF9CF1F0"
+        android:pathData="M61,31h10a6,6 0 0 1 6,6v10a6,6 0 0 1 -6,6H61a6,6 0 0 1 -6,-6V37a6,6 0 0 1 6,-6z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M37,55h10a6,6 0 0 1 6,6v10a6,6 0 0 1 -6,6H37a6,6 0 0 1 -6,-6V61a6,6 0 0 1 6,-6z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M61,55h10a6,6 0 0 1 6,6v10a6,6 0 0 1 -6,6H61a6,6 0 0 1 -6,-6V61a6,6 0 0 1 6,-6z" />
+</vector>

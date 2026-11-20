@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget"
+    android:orientation="vertical"
+    android:padding="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/widget_nav_cell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_nav_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/nav_icon_desc"
+                android:src="@drawable/ic_nav_gesture" />
+
+            <TextView
+                android:id="@+id/widget_nav_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/widget_nav_gesture_short"
+                android:textColor="@color/widget_active"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/widget_timeout_cell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_timeout_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/timeout_icon_desc"
+                android:src="@drawable/ic_screen_timeout" />
+
+            <TextView
+                android:id="@+id/widget_timeout_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/timeout_never_short"
+                android:textColor="@color/widget_active"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/widget_wireless_cell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_wireless_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/wireless_icon_desc"
+                android:src="@drawable/ic_wireless_debug" />
+
+            <TextView
+                android:id="@+id/widget_wireless_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/widget_off_short"
+                android:textColor="@color/widget_active"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/widget_perf_cell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_perf_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/perf_icon_desc"
+                android:src="@drawable/ic_performance" />
+
+            <TextView
+                android:id="@+id/widget_perf_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/widget_perf_off_short"
+                android:textColor="@color/widget_active"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

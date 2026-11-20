@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 品牌色（深色） -->
+    <color name="primary">#FFBAC3FF</color>
+    <color name="on_primary">#FF0A1C8F</color>
+    <color name="primary_container">#FF2840C7</color>
+    <color name="on_primary_container">#FFDDE1FF</color>
+    <color name="secondary">#FF80D4D4</color>
+    <color name="on_secondary">#FF003737</color>
+    <color name="secondary_container">#FF004F4F</color>
+    <color name="on_secondary_container">#FF9CF1F0</color>
+    <color name="tertiary">#FFFFB86B</color>
+    <color name="on_tertiary">#FF4A2800</color>
+    <color name="tertiary_container">#FF6A3C00</color>
+    <color name="on_tertiary_container">#FFFFDDB6</color>
+    <color name="surface">#FF131316</color>
+    <color name="on_surface">#FFE5E1E6</color>
+    <color name="surface_variant">#FF46464F</color>
+    <color name="on_surface_variant">#FFC7C5D0</color>
+    <color name="outline">#FF918F9A</color>
+    <color name="outline_variant">#FF46464F</color>
+    <color name="error">#FFFFB4AB</color>
+    <color name="on_error">#FF690005</color>
+    <color name="error_container">#FF93000A</color>
+    <color name="on_error_container">#FFFFDAD6</color>
+    <color name="inverse_surface">#FFE5E1E6</color>
+    <color name="inverse_on_surface">#FF303034</color>
+    <color name="surface_container_lowest">#FF0E0E11</color>
+    <color name="surface_container_low">#FF1B1B1F</color>
+    <color name="surface_container">#FF1F1F23</color>
+    <color name="surface_container_high">#FF2A2A2E</color>
+    <color name="surface_container_highest">#FF353539</color>
+    <color name="surface_bright">#FF39393D</color>
+    <color name="surface_dim">#FF131316</color>
+
+    <color name="card_background">#FF1B1B1F</color>
+    <color name="card_stroke">#FF303036</color>
+    <color name="code_background">#FF17171B</color>
+
+    <color name="nav_badge_bg">#FF232B57</color>
+    <color name="nav_badge_fg">#FFBAC3FF</color>
+    <color name="timeout_badge_bg">#FF3D2E12</color>
+    <color name="timeout_badge_fg">#FFFFD28A</color>
+    <color name="wireless_badge_bg">#FF173A3A</color>
+    <color name="wireless_badge_fg">#FF80D4D4</color>
+    <color name="perf_badge_bg">#FF44201C</color>
+    <color name="perf_badge_fg">#FFFFB4A8</color>
+    <color name="setup_badge_bg">#FF2E2A3D</color>
+    <color name="setup_badge_fg">#FFCFC4F5</color>
+
+    <color name="widget_active">#FFFFFFFF</color>
+    <color name="widget_inactive">#80FFFFFF</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

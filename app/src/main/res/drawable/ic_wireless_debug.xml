@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Wi-Fi 信号弧 -->
+    <path
+        android:pathData="M4.9,6.4a7.6,7.6 0 0,1 14.2,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="1.7" />
+    <path
+        android:pathData="M7.3,8.2a5.2,5.2 0 0,1 9.4,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="1.7" />
+    <path
+        android:pathData="M9.7,9.9a3.2,3.2 0 0,1 4.6,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="1.7" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12,11.05a1.35,1.35 0 1,0 0,2.7a1.35,1.35 0 1,0 0,-2.7z" />
+
+    <!-- 终端窗口 -->
+    <path
+        android:pathData="M6.4,15.4L17.6,15.4A1.8,1.8 0 0,1 19.4,17.2L19.4,19.8A1.8,1.8 0 0,1 17.6,21.6L6.4,21.6A1.8,1.8 0 0,1 4.6,19.8L4.6,17.2A1.8,1.8 0 0,1 6.4,15.4Z"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M8.0,17.4L10.0,18.9L8.0,20.4"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M12.6,20.4L16.0,20.4"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="1.5" />
+</vector>
