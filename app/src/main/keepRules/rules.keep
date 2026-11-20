@@ -4,6 +4,11 @@
 # For more details, see
 #   https://d.android.com/r/tools/r8/keep-rules
 
+# AGP 9.1+ 默认把类重新打包到无名包。R8 在合并 Kotlin 集合类时会破坏
+# package-private 继承关系，导致 Release 启动时报 IllegalAccessError
+# （kotlin.collections.b extended by ... is inaccessible）。关闭重新打包。
+-dontrepackage
+
 # Shizuku 的 Binder 代理和 provider 依赖类名，保留以免 release 构建被裁掉。
 -keep class rikka.shizuku.** { *; }
 -keep class moe.shizuku.** { *; }

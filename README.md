@@ -280,7 +280,8 @@ app/src/main/java/
 ## 版本与发布
 
 - 版本号单一源头：`app/build.gradle.kts` 的 `versionName`（对外）与 `versionCode`（升级序号）。
-- 当前版本：**v1.0**（`versionCode = 1`）。
+- 当前版本：**v1.1**（`versionCode = 2`）。
+- v1.1 修复了 v1.0 Release 包启动闪退：AGP 9 默认的类重打包与 Kotlin 集合类冲突，`app/src/main/keepRules/rules.keep` 已用 `-dontrepackage` 关闭该优化。
 - Release tag 必须与 `versionName` 的 `vX.Y` 一致；每次发版 `versionCode` 必须递增，否则无法覆盖安装。
 - GitHub Actions 在推送 `v*` tag 时构建签名 Release APK，并校验 tag 与 `versionName`、APK 签名。
 - 签名密钥只存在于 GitHub Secrets（`RELEASE_KEYSTORE_BASE64`、`RELEASE_KEYSTORE_PASSWORD`、`RELEASE_KEY_ALIAS`、`RELEASE_KEY_PASSWORD`），仓库内没有任何 keystore 或密码。
@@ -568,7 +569,8 @@ app/src/main/java/
 ## Version and Releases
 
 - Single version source: `versionName` (public) and `versionCode` (upgrade counter) in `app/build.gradle.kts`.
-- Current version: **v1.0** (`versionCode = 1`).
+- Current version: **v1.1** (`versionCode = 2`).
+- v1.1 fixes a startup crash in the v1.0 release build: AGP 9's default class repackaging conflicted with Kotlin collection classes. `app/src/main/keepRules/rules.keep` now disables that optimization with `-dontrepackage`.
 - A release tag must match `versionName` as `vX.Y`; `versionCode` must increase every release, otherwise the APK cannot be installed over the previous one.
 - GitHub Actions builds the signed release APK when a `v*` tag is pushed, and verifies the tag/version and APK signature.
 - Signing material exists only in GitHub Secrets (`RELEASE_KEYSTORE_BASE64`, `RELEASE_KEYSTORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`); the repository contains no keystore or password.
