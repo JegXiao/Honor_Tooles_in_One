@@ -89,18 +89,18 @@ class ToolboxWidgetProvider : AppWidgetProvider() {
             return
         }
         val current = ScreenTimeout.read(context)
-        val target = if (current == ScreenTimeout.NEVER_TIMEOUT_MILLIS) {
+        val target = if (current == ScreenTimeout.LONG_TIMEOUT_MILLIS) {
             ScreenTimeout.SHORT_TIMEOUT_MILLIS
         } else {
-            ScreenTimeout.NEVER_TIMEOUT_MILLIS
+            ScreenTimeout.LONG_TIMEOUT_MILLIS
         }
         val ok = ScreenTimeout.write(context, target)
         toast(
             context,
             if (!ok) {
                 R.string.toast_timeout_failed
-            } else if (target == ScreenTimeout.NEVER_TIMEOUT_MILLIS) {
-                R.string.toast_timeout_never
+            } else if (target == ScreenTimeout.LONG_TIMEOUT_MILLIS) {
+                R.string.toast_timeout_long
             } else {
                 R.string.toast_timeout_short
             }
@@ -232,14 +232,14 @@ class ToolboxWidgetProvider : AppWidgetProvider() {
 
             // 熄屏
             val timeout = ScreenTimeout.read(context)
-            val never = timeout == ScreenTimeout.NEVER_TIMEOUT_MILLIS
+            val longTimeout = timeout == ScreenTimeout.LONG_TIMEOUT_MILLIS
             views.setImageViewResource(R.id.widget_timeout_icon, R.drawable.ic_screen_timeout)
             views.setTextViewText(
                 R.id.widget_timeout_label,
                 ScreenTimeout.shortLabel(context, timeout)
             )
             tint(views, R.id.widget_timeout_icon, R.id.widget_timeout_label,
-                if (never) activeColor else inactiveColor)
+                if (longTimeout) activeColor else inactiveColor)
             views.setOnClickPendingIntent(
                 R.id.widget_timeout_cell,
                 action(context, ACTION_TIMEOUT, 22)

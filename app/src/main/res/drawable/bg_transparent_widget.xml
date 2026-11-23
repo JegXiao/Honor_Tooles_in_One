@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  近乎透明的占位背景：
+  - 内部只铺 2% 白色，几乎不遮挡壁纸；
+  - 外圈 1dp 黑色约 9% + 内圈 1dp 白色约 12%，在浅色和深色壁纸上都能看到一条极淡的边，
+    方便长按选中和拉伸，但不会变成明显的“卡片”。
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="18dp" />
+            <solid android:color="#05FFFFFF" />
+            <stroke
+                android:width="1dp"
+                android:color="#17000000" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="17dp" />
+            <stroke
+                android:width="1dp"
+                android:color="#1FFFFFFF" />
+        </shape>
+    </item>
+</layer-list>

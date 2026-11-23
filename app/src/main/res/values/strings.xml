@@ -47,8 +47,10 @@
     <string name="timeout_seconds">%1$d 秒</string>
     <string name="timeout_minutes">%1$d 分钟</string>
     <string name="timeout_minutes_seconds">%1$d 分 %2$d 秒</string>
-    <string name="timeout_never">永不熄屏</string>
-    <string name="timeout_never_short">永不</string>
+    <string name="timeout_long">30 分钟</string>
+    <string name="timeout_long_short">30 分</string>
+    <string name="timeout_over_long">30 分钟以上</string>
+    <string name="timeout_over_long_short">30 分+</string>
     <string name="timeout_seconds_short">%1$d 秒</string>
     <string name="timeout_minutes_short">%1$d 分</string>
     <string name="timeout_unknown">未知</string>
@@ -57,13 +59,13 @@
     <string name="timeout_permission_missing">尚未授予「修改系统设置」权限，授权后才能修改熄屏时间。</string>
     <string name="timeout_grant_permission">授予「修改系统设置」权限</string>
     <string name="timeout_set_success">熄屏时间已设为 %1$s</string>
-    <string name="toast_timeout_never">已切换为永不熄屏</string>
+    <string name="toast_timeout_long">已切换为 30 分钟</string>
     <string name="toast_timeout_short">已切换为 2 分钟</string>
     <string name="toast_timeout_failed">设置失败，系统未接受该时长（可能被设备策略限制）</string>
     <string name="toast_timeout_permission">请先授予「修改系统设置」权限</string>
     <string name="timeout_options_hint">授权后即可直接选择；现在点按档位会跳转到授权页面。</string>
     <string name="timeout_usage_title">使用方式</string>
-    <string name="timeout_usage">1. 下拉控制中心，点按「熄屏时间」磁贴：未激活为 2 分钟，激活为永不熄屏。\n2. 其他时长可在此页面直接选择。\n3. 永不熄屏会比较耗电，用完记得切回较短时长。</string>
+    <string name="timeout_usage">1. 下拉控制中心，点按「熄屏时间」磁贴：未激活为 2 分钟，激活为 30 分钟。\n2. 其他时长可在此页面直接选择；30 分钟是当前系统支持的最长档位。\n3. 30 分钟比 2 分钟更耗电，不用时可以点按磁贴切回 2 分钟。</string>
     <string name="timeout_add_tile">添加控制中心开关</string>
     <string name="timeout_add_tile_requested">请按系统提示完成添加</string>
     <string name="timeout_add_tile_instructions">请下拉控制中心，点按编辑（铅笔）按钮，在可用开关中找到「熄屏时间」，然后把它拖到快捷面板。</string>
@@ -120,7 +122,7 @@
     <!-- 熄屏磁贴 -->
     <string name="tile_timeout_label">熄屏时间</string>
     <string name="tile_timeout_desc">熄屏时间，%1$s，点按切换</string>
-    <string name="tile_timeout_never">永不熄屏</string>
+    <string name="tile_timeout_long">30 分钟</string>
     <string name="tile_timeout_current">当前 %1$s</string>
     <string name="tile_timeout_need_permission">需授权</string>
     <string name="tile_timeout_unknown">点按设置</string>
@@ -180,6 +182,10 @@
     <string name="widget_off_short">已关</string>
     <string name="widget_perf_on_short">性能</string>
     <string name="widget_perf_off_short">均衡</string>
+
+    <!-- 透明占位小组件 -->
+    <string name="transparent_widget_name">透明占位</string>
+    <string name="transparent_widget_desc">近乎透明、可自由拉伸的桌面占位；点按无反应</string>
 
     <!-- 图标描述 -->
     <string name="nav_icon_desc">导航方式图标</string>

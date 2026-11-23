@@ -17,6 +17,7 @@
 | 小米 / Redmi / 三星 / OPPO / vivo 等 | 导航功能未适配 | 这些 ROM 可能使用私有设置项；熄屏时间、无线调试、性能模式是否可用取决于系统是否保留对应设置项 |
 | Android 10 以下 | 导航仅支持到三键 / 二键 | 手势导航从 Android 10（API 29）开始提供 |
 | Android 11 以下 | 无线调试不可用 | 无线调试从 Android 11（API 30）开始提供 |
+| Android 17 / MagicOS 11 | 熄屏时间没有「永不」 | 系统设置只保留 15 秒～30 分钟；本 App 用 30 分钟作为长档位 |
 | 非荣耀 / 华为设备 | 性能模式不可用 | 系统项 `SmartModeStatus` 仅存在于 MagicOS / EMUI，App 会显示「当前设备不支持」 |
 | 平板 / 折叠屏 / 桌面模式 | 未适配 | 导航栏形态与设置值可能不同 |
 | 多用户 / 平行空间 / 分身应用 | 需分别授权 | 系统设置与 Shizuku 授权按用户隔离 |
@@ -26,11 +27,12 @@
 ## 功能特性
 
 - **导航方式**：三键导航 ⇄ 手势导航一键切换；荣耀 / 华为通过 Shizuku 执行 `settings` + `cmd overlay`，AOSP 通过 `WRITE_SECURE_SETTINGS` 写 `navigation_mode`。
-- **熄屏时间**：七档预设（15 秒 ~ 30 分钟），以及「永不熄屏」；控制中心磁贴在 2 分钟与永不熄屏之间两态切换。
+- **熄屏时间**：七档预设（15 秒 ~ 30 分钟）；控制中心磁贴在 2 分钟与 30 分钟之间两态切换。Android 17 / MagicOS 11 的系统设置已移除「永不熄屏」，30 分钟是当前系统能稳定保留的最长档位。
 - **无线调试**：一键开关 Android 11+ 的系统「无线调试」，无需进入开发者选项。
 - **性能模式**：一键切换荣耀 MagicOS / 华为 EMUI 的性能模式与均衡模式。
 - **四个控制中心磁贴**：导航方式、熄屏时间、无线调试、性能模式，可分别加入快捷面板。
 - **2×2 桌面小组件**：四个格子对应四个功能，点按即切换，实时显示当前状态。
+- **透明占位小组件**：初始 1×1、可横竖拉伸，近乎透明但保留极淡双色轮廓；点按无任何反应，适合占住桌面空白区域，或把新 App 挤到后面的页面。
 - **统一授权页**：集中管理 Shizuku、ADB、Root 与「修改系统设置」特殊权限。
 - **无后台常驻服务、无网络权限、无统计、无广告**；界面支持深色模式与边到边显示。
 - 所有写入都会回读校验，失败时明确提示，不假装成功。
@@ -166,20 +168,32 @@ appops set me.jegxiao.honortoolbox android:write_settings allow
 
 | 磁贴状态 | 系统值 | 点按后 |
 |---|---|---|
-| 未激活 | 2 分钟（120000 ms） | 切换到永不熄屏 |
-| 激活 | 2147483647 ms（约 24.85 天） | 切回 2 分钟 |
+| 未激活 | 2 分钟（120000 ms） | 切换到 30 分钟 |
+| 激活 | 1800000 ms（30 分钟） | 切回 2 分钟 |
 
-如果当前系统值既不是 2 分钟也不是永不熄屏（例如在系统设置里选了 30 分钟），磁贴显示未激活并展示当前值；第一次点按切到永不，第二次点按回到 2 分钟。
+如果当前系统值既不是 2 分钟也不是 30 分钟（例如在系统设置里选了 10 分钟），磁贴显示未激活并展示当前值；第一次点按切到 30 分钟，第二次点按回到 2 分钟。
 
-### 桌面小组件
+> 旧版「永不熄屏」使用的 `2147483647` 会被 Android 17 / MagicOS 11 的系统设置重置为 30 秒，因此 v1.4 起改用 30 分钟作为长档位。
+
+### 2×2 快捷小组件
 
 在桌面长按空白处 → 小组件 → 找到「荣耀工具箱」（2×2）→ 拖到桌面。四个格子分别对应导航方式、熄屏时间、无线调试、性能模式：
 
 - 点按导航格：在手势与三键之间切换。
-- 点按熄屏格：在永不熄屏与 2 分钟之间切换。
+- 点按熄屏格：在 30 分钟与 2 分钟之间切换。
 - 点按无线调试格：开启 / 关闭无线调试。
 - 点按性能格：在性能与均衡之间切换。
 - 未授权时点按会自动打开「授权与帮助」。
+
+### 透明占位小组件
+
+在桌面长按空白处 → 小组件 → 找到「透明占位」→ 拖到桌面。
+
+- 初始 1×1，可横向 / 纵向拉伸到任意网格区域。
+- 内部只有约 2% 白色填充，加一圈极淡的黑 / 白双色描边；几乎不遮挡壁纸，又能在浅色和深色壁纸上看见边界。
+- 点按不会打开 App、不会跳转、不会弹提示；长按仍可进入桌面的编辑 / 缩放。
+- 部分桌面（实测荣耀 MagicOS）会对没有点击事件的组件默认打开所属 App，因此组件显式注册了一个空广播来消费点击。
+- 它只占桌面网格，不改变桌面本身的背景；是否能把新安装的 App 挤到后面的页面，取决于桌面如何分配新图标位置。
 
 ## 实现说明
 
@@ -204,7 +218,8 @@ app/src/main/java/
 │   │   └── PerfMode.kt              # 性能模式
 │   ├── tiles/                       # 四个 Quick Settings TileService
 │   └── widget/
-│       └── ToolboxWidgetProvider.kt # 2×2 RemoteViews 小组件
+│       ├── ToolboxWidgetProvider.kt # 2×2 RemoteViews 小组件
+│       └── TransparentWidgetProvider.kt # 透明占位小组件（空点击广播）
 └── rikka/shizuku/
     └── ShizukuAccess.java           # 调用 Shizuku 的 newProcess（非公开 API）
 ```
@@ -229,7 +244,8 @@ app/src/main/java/
 **熄屏时间**
 
 - 读写 `Settings.System.SCREEN_OFF_TIMEOUT`。
-- 预设：15 秒、30 秒、1 分钟、2 分钟、5 分钟、10 分钟、30 分钟；「永不熄屏」写入 `Integer.MAX_VALUE`（2147483647 ms，约 24.85 天）。
+- 预设：15 秒、30 秒、1 分钟、2 分钟、5 分钟、10 分钟、30 分钟。
+- Android 17 / MagicOS 11 的系统设置只保留这七档；写入 `2147483647` 等非列表值后，打开系统设置页会被 `com.android.settings` 重置成 30 秒。v1.4 起用 30 分钟（`1800000 ms`）作为长档位。
 - 写入后立即回读，系统若把值改成其他档位会报告失败。
 
 **无线调试**
@@ -244,6 +260,12 @@ app/src/main/java/
 - MagicOS 拒绝普通 App 直接写系统设置，因此优先通过 Shizuku 执行 `settings put system SmartModeStatus <值>`。
 - 写入后回读校验；设备没有该设置项时，开关直接显示「当前设备不支持」。
 
+**透明占位小组件**
+
+- 初始 1×1、双向可拉伸；背景 `bg_transparent_widget` 只铺约 2% 白色，外加一圈极淡的黑 / 白双色描边。
+- 根布局显式绑定一个指向 `TransparentWidgetProvider` 的空广播 `PendingIntent`（action `me.jegxiao.honortoolbox.widget.TRANSPARENT_NOOP`）；`onReceive` 收到后直接返回，不启动任何界面。这样既满足「点按无反应」，也能阻止 MagicOS 桌面在没有点击事件时默认打开所属 App。
+- 长按进入桌面编辑 / 缩放由桌面处理；组件不注册配置 Activity，也不发起网络请求。
+
 ### Shizuku 接入方式
 
 - 依赖 `dev.rikka.shizuku:api:13.1.5` 与 `provider:13.1.5`，Manifest 中注册 `rikka.shizuku.ShizukuProvider`。
@@ -255,7 +277,7 @@ app/src/main/java/
 
 - 四个功能的主页卡片、磁贴、小组件都由 `ContentObserver` 监听对应设置项 URI，系统值变化后自动刷新。
 - 控制中心磁贴遵循 Android 14 的 `PendingIntent` 启动要求；同时声明 `TOGGLEABLE_TILE`。
-- 小组件使用 `RemoteViews` 实现 2×2 布局，四个格子各自绑定 `PendingIntent`，操作在 `goAsync()` 后台线程执行，完成后主动刷新。
+- 2×2 小组件使用 `RemoteViews`，四个格子各自绑定 `PendingIntent`，操作在 `goAsync()` 后台线程执行，完成后主动刷新；透明占位组件同样使用 `RemoteViews`，初始 1×1。
 - 主题使用 Material 3 DayNight 配色，主界面与两个子页面均处理状态栏 / 导航栏 Insets。
 
 ## 安全边界与注意事项
@@ -264,7 +286,7 @@ app/src/main/java/
 - 它确实需要很强的系统权限（Shizuku shell / `WRITE_SECURE_SETTINGS` / `WRITE_SETTINGS`）。请只在自己的设备上安装，并在授权前理解这些权限的影响。
 - 关闭「无线调试」会立即断开已经建立的无线 ADB 连接；远程调试时请避免误触。
 - 切换导航方式后，SystemUI 会短暂重载，这是正常现象。
-- 「永不熄屏」会更耗电；它把超时设为约 24.85 天，并不是真正的无限。按电源键、锁屏、低电量策略仍可能关闭屏幕。
+- 30 分钟档位比 2 分钟更耗电，但它不是「永不」；按电源键、锁屏、低电量策略仍可能关闭屏幕。
 - 厂商 ROM 可能静默拒绝写入或把值限制成其他档位；App 会回读校验并提示失败，不会伪造成功。
 - Shizuku 重启、手机重启或卸载重装后，授权可能失效；重新打开「授权与帮助」检查即可。
 - Root 按钮只在用户主动点击时执行，不会在后台尝试提权。
@@ -273,6 +295,8 @@ app/src/main/java/
 
 - 导航切换只在荣耀 HEY3-W00 上完整验证；AOSP、华为与其他品牌未实机验证。
 - 熄屏时间、无线调试、性能模式依赖厂商是否保留对应系统设置项；缺失时 App 会显示不支持或失败。
+- Android 17 / MagicOS 11 的系统设置只支持最长 30 分钟，已经无法通过系统设置实现真正的「永不熄屏」。
+- Shizuku 的「应用管理」列表在部分版本 / ROM 上可能不显示本应用；以本 App「授权与帮助」的状态为准，不影响已有授权和功能。
 - 多用户、平行空间、分身应用需要各自安装并授权。
 - 没有适配 Android 桌面模式、折叠屏展开态的特殊导航栏形态。
 - 本项目的 Release 附件名为固定名称 `Honor_Tooles_in_One.apk`，升级时同名覆盖，README 的 `releases/latest/download` 直链不需要随版本修改。
@@ -280,7 +304,8 @@ app/src/main/java/
 ## 版本与发布
 
 - 版本号单一源头：`app/build.gradle.kts` 的 `versionName`（对外）与 `versionCode`（升级序号）。
-- 当前版本：**v1.1**（`versionCode = 2`）。
+- 当前版本：**v1.4**（`versionCode = 5`）。
+- v1.4 新增透明占位小组件；熄屏时间长档位从「永不」改为 30 分钟（Android 17 / MagicOS 11 的系统设置已移除「永不」，非列表值会被重置成 30 秒）。
 - v1.1 修复了 v1.0 Release 包启动闪退：AGP 9 默认的类重打包与 Kotlin 集合类冲突，`app/src/main/keepRules/rules.keep` 已用 `-dontrepackage` 关闭该优化。
 - Release tag 必须与 `versionName` 的 `vX.Y` 一致；每次发版 `versionCode` 必须递增，否则无法覆盖安装。
 - GitHub Actions 在推送 `v*` tag 时构建签名 Release APK，并校验 tag 与 `versionName`、APK 签名。
@@ -308,6 +333,7 @@ app/src/main/java/
 | Xiaomi / Redmi / Samsung / OPPO / vivo | Navigation not adapted | These ROMs may use private settings; the other features depend on whether the system settings exist |
 | Below Android 10 | No gesture navigation | Gesture navigation is available from Android 10 (API 29) |
 | Below Android 11 | Wireless debugging unavailable | Wireless debugging is available from Android 11 (API 30) |
+| Android 17 / MagicOS 11 | No "never" screen timeout | System Settings keeps only 15 s–30 min; the app uses 30 minutes as the long option |
 | Non-HONOR / non-HUAWEI | Performance mode unavailable | `SmartModeStatus` only exists on MagicOS / EMUI; the switch shows "Not supported" |
 | Tablets / foldables / desktop mode | Not adapted | Navigation bar forms and values may differ |
 | Multi-user / Parallel Space / app cloning | Separate authorization | System settings and Shizuku grants are per user |
@@ -317,11 +343,12 @@ app/src/main/java/
 ## Features
 
 - **Navigation mode**: toggle between 3-button and gesture navigation. HONOR / HUAWEI use Shizuku to run `settings` + `cmd overlay`; AOSP writes `navigation_mode` with `WRITE_SECURE_SETTINGS`.
-- **Screen timeout**: seven presets (15 s to 30 min) plus "never"; the Quick Settings tile toggles between 2 minutes and never.
+- **Screen timeout**: seven presets (15 s to 30 min); the Quick Settings tile toggles between 2 minutes and 30 minutes. Android 17 / MagicOS 11 has removed "never"; 30 minutes is the longest value the system keeps stable.
 - **Wireless debugging**: one-tap toggle for Android 11+ wireless debugging, without opening Developer options.
 - **Performance mode**: toggle HONOR MagicOS / HUAWEI EMUI performance and balanced modes.
 - **Four Quick Settings tiles**: Navigation, Screen timeout, Wireless debugging, Performance mode.
 - **2×2 home screen widget**: four cells, one per feature, with live state.
+- **Transparent spacer widget**: starts at 1×1, resizes in both directions, nearly transparent with a very faint dual-tone border; tapping does nothing. Useful for reserving empty home screen space or pushing new apps to later pages.
 - **Unified setup page**: manage Shizuku, ADB, Root and the "Modify system settings" special access in one place.
 - **No always-on background service, no network permission, no analytics, no ads**; dark mode and edge-to-edge UI.
 - Every write is verified by reading the setting back; failures are reported instead of silently pretending success.
@@ -438,7 +465,7 @@ It reports failure if `su` is unavailable instead of freezing the UI. Wireless d
 ### Home screen
 
 - **Navigation card**: shows the current mode (3-button / 2-button / gesture); the button changes to "Switch to gesture navigation" or "Switch to 3-button navigation". Without authorization it becomes "Go to setup".
-- **Screen timeout card**: opens the picker with seven presets and the never option.
+- **Screen timeout card**: opens the picker with seven presets; 30 minutes is the longest stable value.
 - **Wireless debugging switch**: toggles directly; requires Android 11+.
 - **Performance mode switch**: toggles directly; only meaningful on HONOR / HUAWEI.
 - **Setup & help**: manages Shizuku, ADB, Root and "Modify system settings".
@@ -455,20 +482,32 @@ The "Screen timeout" tile is a two-state switch:
 
 | Tile state | System value | After tap |
 |---|---|---|
-| Inactive | 2 minutes (120000 ms) | Never |
-| Active | 2147483647 ms (~24.85 days) | 2 minutes |
+| Inactive | 2 minutes (120000 ms) | 30 minutes |
+| Active | 1800000 ms (30 minutes) | 2 minutes |
 
-If the current value is neither 2 minutes nor never (for example 30 minutes chosen in system Settings), the tile is inactive and shows the current value; the first tap sets never, the second returns to 2 minutes.
+If the current value is neither 2 minutes nor 30 minutes (for example 10 minutes chosen in system Settings), the tile is inactive and shows the current value; the first tap sets 30 minutes, the second returns to 2 minutes.
 
-### Home screen widget
+> The old "never" value `2147483647` is reset to 30 seconds by Android 17 / MagicOS 11 Settings, so v1.4 uses 30 minutes instead.
+
+### 2×2 quick widget
 
 Long-press an empty area → Widgets → "Honor Toolbox" (2×2) → drag to the home screen. The four cells control navigation, screen timeout, wireless debugging and performance mode:
 
 - Navigation cell: toggles gesture / 3-button.
-- Timeout cell: toggles never / 2 minutes.
+- Timeout cell: toggles 30 minutes / 2 minutes.
 - Wireless debugging cell: on / off.
 - Performance cell: performance / balanced.
 - Tapping a cell without authorization opens "Setup & help".
+
+### Transparent spacer widget
+
+Long-press an empty area → Widgets → "Transparent spacer" → drag to the home screen.
+
+- Starts at 1×1; resizes horizontally and vertically.
+- About 2% white fill plus a very faint black/white border; almost invisible over the wallpaper but still visible on both light and dark backgrounds.
+- Tapping does not open the app, navigate, or show anything; long-press still enters the launcher's edit/resize mode.
+- Some launchers (HONOR MagicOS observed) open the owning app when a widget has no click event, so the widget registers an explicit no-op broadcast to consume the tap.
+- It only occupies grid cells and does not change the launcher background; whether new apps move to later pages depends on the launcher.
 
 ## Implementation Notes
 
@@ -493,7 +532,8 @@ app/src/main/java/
 │   │   └── PerfMode.kt              # Performance mode
 │   ├── tiles/                       # Four Quick Settings TileServices
 │   └── widget/
-│       └── ToolboxWidgetProvider.kt # 2×2 RemoteViews widget
+│       ├── ToolboxWidgetProvider.kt # 2×2 RemoteViews widget
+│       └── TransparentWidgetProvider.kt # Transparent spacer widget (no-op click)
 └── rikka/shizuku/
     └── ShizukuAccess.java           # Calls Shizuku newProcess (non-public API)
 ```
@@ -518,7 +558,8 @@ app/src/main/java/
 **Screen timeout**
 
 - Reads/writes `Settings.System.SCREEN_OFF_TIMEOUT`.
-- Presets: 15 s, 30 s, 1 min, 2 min, 5 min, 10 min, 30 min. "Never" writes `Integer.MAX_VALUE` (2147483647 ms, ~24.85 days).
+- Presets: 15 s, 30 s, 1 min, 2 min, 5 min, 10 min, 30 min.
+- Android 17 / MagicOS 11 Settings keeps only these seven values; writing `2147483647` is reset to 30 seconds by `com.android.settings`. v1.4 uses 30 minutes (`1800000 ms`) as the long option.
 - The value is read back immediately; if the ROM clamps it to another preset, the app reports failure.
 
 **Wireless debugging**
@@ -533,6 +574,12 @@ app/src/main/java/
 - MagicOS rejects direct system-setting writes from ordinary apps, so the app prefers `settings put system SmartModeStatus <value>` through Shizuku.
 - The value is read back; if the setting does not exist, the switch shows "Not supported".
 
+**Transparent spacer widget**
+
+- Starts at 1×1 and resizes in both directions; `bg_transparent_widget` uses about 2% white fill plus a very faint black/white dual-tone border.
+- The root layout explicitly binds a no-op broadcast `PendingIntent` (action `me.jegxiao.honortoolbox.widget.TRANSPARENT_NOOP`) to `TransparentWidgetProvider`; `onReceive` returns immediately. This consumes the tap and also prevents MagicOS from opening the owning app when a widget has no click event.
+- Long-press editing/resizing is handled by the launcher; the widget declares no configuration activity and makes no network requests.
+
 ### Shizuku integration
 
 - Depends on `dev.rikka.shizuku:api:13.1.5` and `provider:13.1.5`; the manifest registers `rikka.shizuku.ShizukuProvider`.
@@ -544,7 +591,7 @@ app/src/main/java/
 
 - The dashboard cards, tiles and widget observe the relevant settings URIs with `ContentObserver`, so external changes also refresh the UI.
 - Tiles follow the Android 14 `PendingIntent` requirement and declare `TOGGLEABLE_TILE`.
-- The 2×2 widget uses `RemoteViews`; each cell has its own `PendingIntent`. Actions run on a background thread via `goAsync()` and refresh the widget afterwards.
+- The 2×2 widget uses `RemoteViews`; each cell has its own `PendingIntent`. Actions run on a background thread via `goAsync()` and refresh the widget afterwards. The transparent spacer widget also uses `RemoteViews` and starts at 1×1.
 - Material 3 DayNight colors; all three screens handle status/navigation bar insets and edge-to-edge display.
 
 ## Security Boundaries
@@ -553,7 +600,7 @@ app/src/main/java/
 - It does require powerful system permissions (Shizuku shell / `WRITE_SECURE_SETTINGS` / `WRITE_SETTINGS`). Only install it on your own device and understand these permissions before granting them.
 - Turning off wireless debugging immediately disconnects any established wireless ADB connection. Avoid accidental taps while debugging remotely.
 - Switching the navigation mode makes SystemUI reload briefly; this is expected.
-- "Never" timeout uses more battery. It sets the timeout to ~24.85 days, not true infinity; the power button, lock screen, low battery and device policies can still turn the screen off.
+- The 30-minute option uses more battery than 2 minutes, but it is not "never"; the power button, lock screen, low battery and device policies can still turn the screen off.
 - Vendor ROMs may silently reject writes or clamp values. The app reads values back and reports failures rather than faking success.
 - Shizuku grants can be lost after a Shizuku service restart, a phone reboot or a reinstall; check "Setup & help" again.
 - The Root button only runs when the user taps it; the app never attempts privilege escalation in the background.
@@ -562,6 +609,8 @@ app/src/main/java/
 
 - Navigation switching is fully verified only on HONOR HEY3-W00; AOSP, HUAWEI and other brands are untested.
 - Screen timeout, wireless debugging and performance mode depend on the vendor keeping the corresponding system settings. If missing, the app reports unsupported or failure.
+- Android 17 / MagicOS 11 supports at most 30 minutes; a true "never" can no longer be set through system settings.
+- Shizuku's "App management" list may not show this app on some versions/ROMs; use the app's "Setup & help" status instead. It does not affect existing authorization or functionality.
 - Multi-user, Parallel Space and app cloning require separate installs and grants.
 - Android desktop mode and special navigation bar layouts on unfolded foldables are not adapted.
 - The release asset uses the fixed name `Honor_Tooles_in_One.apk`, so upgrades overwrite it by name and the README `releases/latest/download` link never needs updating.
@@ -569,7 +618,8 @@ app/src/main/java/
 ## Version and Releases
 
 - Single version source: `versionName` (public) and `versionCode` (upgrade counter) in `app/build.gradle.kts`.
-- Current version: **v1.1** (`versionCode = 2`).
+- Current version: **v1.4** (`versionCode = 5`).
+- v1.4 adds the transparent spacer widget and changes the long screen-timeout option from "never" to 30 minutes (Android 17 / MagicOS 11 Settings removed "never" and resets non-listed values to 30 seconds).
 - v1.1 fixes a startup crash in the v1.0 release build: AGP 9's default class repackaging conflicted with Kotlin collection classes. `app/src/main/keepRules/rules.keep` now disables that optimization with `-dontrepackage`.
 - A release tag must match `versionName` as `vX.Y`; `versionCode` must increase every release, otherwise the APK cannot be installed over the previous one.
 - GitHub Actions builds the signed release APK when a `v*` tag is pushed, and verifies the tag/version and APK signature.

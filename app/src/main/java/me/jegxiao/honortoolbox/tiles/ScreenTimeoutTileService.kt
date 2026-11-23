@@ -14,7 +14,10 @@ import me.jegxiao.honortoolbox.features.ScreenTimeout
 import me.jegxiao.honortoolbox.widget.ToolboxWidgetProvider
 
 /**
- * 控制中心磁贴：未激活写 2 分钟，激活写「永不熄屏」。
+ * 控制中心磁贴：未激活写 2 分钟，激活写 30 分钟。
+ *
+ * Android 17 / MagicOS 11 的系统设置已经没有「永不熄屏」，非列表值会被系统
+ * 重置成 30 秒，因此 30 分钟是该系统上能稳定保留的最长时长。
  */
 class ScreenTimeoutTileService : TileService() {
 
@@ -34,16 +37,16 @@ class ScreenTimeoutTileService : TileService() {
 
     private fun toggleTimeout() {
         val current = ScreenTimeout.read(this)
-        val enableNever = current != ScreenTimeout.NEVER_TIMEOUT_MILLIS
-        val target = if (enableNever) {
-            ScreenTimeout.NEVER_TIMEOUT_MILLIS
+        val enableLong = current != ScreenTimeout.LONG_TIMEOUT_MILLIS
+        val target = if (enableLong) {
+            ScreenTimeout.LONG_TIMEOUT_MILLIS
         } else {
             ScreenTimeout.SHORT_TIMEOUT_MILLIS
         }
 
         val success = ScreenTimeout.write(this, target)
         val message = when {
-            success && enableNever -> getString(R.string.toast_timeout_never)
+            success && enableLong -> getString(R.string.toast_timeout_long)
             success -> getString(R.string.toast_timeout_short)
             else -> getString(R.string.toast_timeout_failed)
         }
@@ -57,11 +60,11 @@ class ScreenTimeoutTileService : TileService() {
         val tile = qsTile ?: return
         val hasPermission = ScreenTimeout.canWrite(this)
         val current = ScreenTimeout.read(this)
-        val isNever = current == ScreenTimeout.NEVER_TIMEOUT_MILLIS
+        val isLong = current == ScreenTimeout.LONG_TIMEOUT_MILLIS
 
         tile.label = getString(R.string.tile_timeout_label)
         tile.icon = Icon.createWithResource(this, R.drawable.ic_screen_timeout)
-        tile.state = if (hasPermission && isNever) {
+        tile.state = if (hasPermission && isLong) {
             Tile.STATE_ACTIVE
         } else {
             Tile.STATE_INACTIVE
@@ -70,7 +73,7 @@ class ScreenTimeoutTileService : TileService() {
         val subtitle = when {
             !hasPermission -> getString(R.string.tile_timeout_need_permission)
             current == null -> getString(R.string.tile_timeout_unknown)
-            isNever -> getString(R.string.tile_timeout_never)
+            isLong -> getString(R.string.tile_timeout_long)
             else -> getString(
                 R.string.tile_timeout_current,
                 ScreenTimeout.format(this, current)

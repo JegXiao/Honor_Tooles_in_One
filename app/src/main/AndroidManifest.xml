@@ -120,6 +120,19 @@
                 android:resource="@xml/toolbox_widget_info" />
         </receiver>
 
+        <!-- 近乎透明的可拉伸占位小组件（无点击行为） -->
+        <receiver
+            android:name=".widget.TransparentWidgetProvider"
+            android:exported="false"
+            android:label="@string/transparent_widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/transparent_widget_info" />
+        </receiver>
+
         <provider
             android:name="rikka.shizuku.ShizukuProvider"
             android:authorities="${applicationId}.shizuku"

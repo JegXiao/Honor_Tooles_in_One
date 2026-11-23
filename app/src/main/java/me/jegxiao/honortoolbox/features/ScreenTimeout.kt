@@ -13,8 +13,14 @@ object ScreenTimeout {
     /** 快捷开关未激活时使用的时长。 */
     const val SHORT_TIMEOUT_MILLIS = 2 * 60 * 1000
 
-    /** 约 24.85 天，实际效果等同永不熄屏。 */
-    const val NEVER_TIMEOUT_MILLIS = Int.MAX_VALUE
+    /**
+     * 长时长档位。
+     *
+     * Android 17 / MagicOS 11 的系统设置已移除「永不熄屏」，打开设置页时会把
+     * 2147483647 之类的非列表值重置成 30 秒。30 分钟是系统列表里的最大值，
+     * 也是升级后仍能稳定保留的最长时长。
+     */
+    const val LONG_TIMEOUT_MILLIS = 30 * 60 * 1000
 
     fun options(context: Context): List<ScreenTimeoutOption> {
         val values = context.resources.getIntArray(R.array.screen_timeout_values)
@@ -52,11 +58,13 @@ object ScreenTimeout {
         }
     }
 
-    fun isNever(context: Context): Boolean = read(context) == NEVER_TIMEOUT_MILLIS
+    fun isLong(context: Context): Boolean = read(context) == LONG_TIMEOUT_MILLIS
 
     fun format(context: Context, millis: Int): String {
         options(context).firstOrNull { it.millis == millis }?.let { return it.label }
-        if (millis == Int.MAX_VALUE) return context.getString(R.string.timeout_never)
+        if (millis > LONG_TIMEOUT_MILLIS) {
+            return context.getString(R.string.timeout_over_long)
+        }
 
         val totalSeconds = millis.coerceAtLeast(0) / 1000
         val minutes = totalSeconds / 60
@@ -71,7 +79,8 @@ object ScreenTimeout {
     /** 小组件和控制中心使用的极简文案。 */
     fun shortLabel(context: Context, millis: Int?): String = when {
         millis == null -> context.getString(R.string.timeout_unknown_short)
-        millis == NEVER_TIMEOUT_MILLIS -> context.getString(R.string.timeout_never_short)
+        millis > LONG_TIMEOUT_MILLIS -> context.getString(R.string.timeout_over_long_short)
+        millis == LONG_TIMEOUT_MILLIS -> context.getString(R.string.timeout_long_short)
         else -> {
             val totalSeconds = millis.coerceAtLeast(0) / 1000
             when {

@@ -66,7 +66,7 @@
                 android:layout_marginTop="1dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/timeout_never_short"
+                android:text="@string/timeout_long_short"
                 android:textColor="@color/widget_active"
                 android:textSize="10sp"
                 android:textStyle="bold" />
